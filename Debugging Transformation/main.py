@@ -11,8 +11,16 @@ input_topic = app.topic(os.environ["input"])
 output_topic = app.topic(os.environ["output"])
 
 sdf = app.dataframe(input_topic)
-#sdf['location-altitude'] = sdf.apply()
-sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
+cols = ["location-altitude", "location-longitude", "location-latitude"]
+
+def check_if_cols_exist(value):
+    return all([col in value for col in cols])
+
+if sdf.update(check_if_cols_exist):
+    sdf = sdf[cols]
+else:
+    for col in cols:
+        sdf[col] = None
 
 sdf.print(metadata=True)
 sdf.to_topic(output_topic)
