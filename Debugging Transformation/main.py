@@ -11,7 +11,8 @@ input_topic = app.topic(os.environ["input"])
 output_topic = app.topic(os.environ["output"])
 
 sdf = app.dataframe(input_topic)
-sdf = sdf[['location-altitude', 'location-longitude', 'location-latitude']]
+#sdf['location-altitude'] = sdf.apply()
+sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
 sdf.print(metadata=True)
 sdf.to_topic(output_topic)
