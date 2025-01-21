@@ -18,7 +18,7 @@ sdf = sdf[filter_cols]
 """
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
-
+"""
 cols = ["location-altitude", "location-longitude", "location-latitude"]
 def check_if_cols_exist(values):
     return all([col in values for col in cols])
@@ -29,7 +29,7 @@ else:
     for col in cols:
         sdf[col] = None
     sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
-
+"""
 
 sdf.print(metadata=True)
 sdf.to_topic(output_topic)
