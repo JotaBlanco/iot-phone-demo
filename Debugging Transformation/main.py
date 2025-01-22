@@ -38,6 +38,10 @@ sdf1 = (
 )
 print("sdf1")
 sdf1.print()
+
+sdf2["new_col"] = 2
+sdf2["avg_loc_1"] = sdf1.update(lambda value: value)
+
 """
 sdf2 = (
     sdf2.apply(lambda value: value["location-longitude"])
