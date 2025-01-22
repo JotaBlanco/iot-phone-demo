@@ -20,7 +20,7 @@ sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 sdf.print(metadata=True)
 
 # WINDOW
-sdf = (
+sdf["location-altitude"] = (
     # Extract "temperature" value from the message
     sdf.apply(lambda value: value["location-altitude"])
 
@@ -33,15 +33,6 @@ sdf = (
 
     # Emit updates for each incoming message
     .current()
-
-    # Unwrap the aggregated result to match the expected output format
-    .apply(
-        lambda result: {
-            "avg_temperature": result["value"],
-            "window_start_ms": result["start"],
-            "window_end_ms": result["end"],
-        }
-    )
 )
 sdf.print()
 sdf.to_topic(output_topic)
