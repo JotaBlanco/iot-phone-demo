@@ -38,10 +38,13 @@ def calculate_hull_points(value:dict, state:State):
     
     # Calculate Convex Hull
     if len(new_points_array) > 3:
-        hull = ConvexHull(new_points_array)
-        new_points_array = new_points_array[hull.vertices]
-        # Create area col
-        value["HullArea"] = hull.area
+        try:
+            hull = ConvexHull(new_points_array)
+            new_points_array = new_points_array[hull.vertices]
+            # Create area col
+            value["HullArea"] = hull.area
+        except:
+            print("Hasn't worked")
 
     # Update state with Hull
     state.set('position_points', new_points_array.tolist())
