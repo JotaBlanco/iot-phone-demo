@@ -20,6 +20,7 @@ sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 sdf1 = sdf[["location-altitude"]]
 sdf2 = sdf[["location-longitude"]]
 sdf3 = sdf[["location-latitude"]]
+sdf3["caca"] = 2
 sdf.print(metadata=True)
 sdf1.print(metadata=True)
 sdf2.print(metadata=True)
