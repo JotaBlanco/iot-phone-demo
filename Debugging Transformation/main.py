@@ -19,7 +19,11 @@ filter_cols = ((sdf.contains("location-altitude")) & (sdf.contains("location-lon
 sdf = sdf[filter_cols]
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
+# 
+def calculate_
 
+
+"""
 # WINDOW
 # location-altitude
 sdf1 = sdf[["location-altitude"]]
@@ -32,9 +36,7 @@ sdf1.print()
 print(sdf1.apply(lambda value: value["mean_location_altitude"]))
 
 
-
 # location-longitude
-"""
 sdf2 = sdf[["location-longitude"]]
 sdf2 = (
     sdf2.apply(lambda value: value["location-longitude"])
@@ -56,9 +58,6 @@ sdf3 = (
 mean_location_latitude = sdf3.update(lambda value: print(value))
 """
 
-
-
-#sdf.print()
 sdf.to_topic(output_topic)
 
 if __name__ == "__main__":
