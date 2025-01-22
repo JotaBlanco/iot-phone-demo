@@ -26,6 +26,8 @@ sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 def calculate_hull_points(value:dict, state:State):
     # Get latest point coordinates
     latest_point = np.array([value["location-longitude"],value["location-latitude"]])
+    print(latest_point)
+    """
 
     # Update state
     current_points_array = state.get("position_points")
@@ -43,6 +45,8 @@ def calculate_hull_points(value:dict, state:State):
 
     # Create area col
     value["HullArea"] = hull.area
+
+    """
 
 sdf = sdf.update(calculate_hull_points, stateful=True)
 sdf.print()
