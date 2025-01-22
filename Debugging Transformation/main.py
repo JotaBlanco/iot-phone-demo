@@ -21,17 +21,9 @@ sdf.print(metadata=True)
 
 # WINDOW
 sdf = (
-    # Extract "temperature" value from the message
     sdf.apply(lambda value: value["location-altitude"])
-
-    # Define a hopping window of 1h with 10m step
-    # You can also pass duration_ms and step_ms as integers of milliseconds
-    .hopping_window(duration_ms=timedelta(seconds=10), step_ms=timedelta(seconds=1))
-
-    # Specify the "mean" aggregate function
+    .sliding_window(duration_ms=timedelta(seconds=10))
     .mean()
-
-    # Emit updates for each incoming message
     .current()
 )
 
