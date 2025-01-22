@@ -20,7 +20,7 @@ sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 sdf.print(metadata=True)
 
 # WINDOW
-sdf["location-altitude"] = (
+sdf = (
     # Extract "temperature" value from the message
     sdf.apply(lambda value: value["location-altitude"])
 
