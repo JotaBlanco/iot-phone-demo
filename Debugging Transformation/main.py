@@ -25,6 +25,8 @@ sdf = (
     .sliding_window(duration_ms=timedelta(seconds=10))
     .mean()
     .current()
+    # Unwrap the aggregated result to match the expected output format
+    .apply(lambda result: "avg_location-altitude": result["value"])
 )
 
 sdf.print()
