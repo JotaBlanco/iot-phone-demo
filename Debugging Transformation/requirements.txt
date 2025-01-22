@@ -1,2 +1,4 @@
 quixstreams==3.2.1
 python-dotenv
+numpy
+scipy
