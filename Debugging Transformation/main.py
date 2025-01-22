@@ -19,17 +19,10 @@ filter_cols = ((sdf.contains("location-altitude")) & (sdf.contains("location-lon
 sdf = sdf[filter_cols]
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
-sdf1 = sdf[["location-altitude"]]
-#sdf1.print(metadata=True)
-
-sdf2 = sdf[["location-longitude"]]
-#sdf2.print(metadata=True)
-
-sdf3 = sdf[["location-latitude"]]
-#sdf3.print(metadata=True)
-
 
 # WINDOW
+# location-altitude
+sdf1 = sdf[["location-altitude"]]
 sdf1 = (
     sdf1.apply(lambda value: value["location-altitude"])
     .sliding_window(duration_ms=timedelta(seconds=10))
@@ -37,19 +30,9 @@ sdf1 = (
     .current()
     .apply(lambda result: result["value"]) # Unwrap the aggregated result to match the expected output format
 )
-print("sdf1")
-sdf1.print()
-
-sdf["new_col"] = 2 # assigning a value to a new column: it works
-sdf1.update(lambda value: print(value)) # accessing the result of sdf1: it works
-a = sdf1.update(lambda value: print(value)) # assigning the result of sdf1 to a variable: it works
-print(a)
-b = copy.deepcopy(a)
-sdf["new_col2"] = b # assigning the result of sdf1 to a new columns of sdf: it doesn't
-sdf.print()
-
-
-"""
+mean_location_altitud = sdf1.update(lambda value: print(value)) 
+# location-longitude
+sdf2 = sdf[["location-longitude"]]
 sdf2 = (
     sdf2.apply(lambda value: value["location-longitude"])
     .sliding_window(duration_ms=timedelta(seconds=10))
@@ -57,9 +40,9 @@ sdf2 = (
     .current()
     .apply(lambda result: result["value"]) # Unwrap the aggregated result to match the expected output format
 )
-print("sdf2")
-sdf2.print()
-
+mean_location_longitude = sdf2.update(lambda value: print(value)) 
+# location-latitude
+sdf3 = sdf[["location-latitude"]]
 sdf3 = (
     sdf3.apply(lambda value: value["location-latitude"])
     .sliding_window(duration_ms=timedelta(seconds=10))
@@ -67,9 +50,12 @@ sdf3 = (
     .current()
     .apply(lambda result: result["value"]) # Unwrap the aggregated result to match the expected output format
 )
-print("sdf3")
-sdf3.print()
-"""
+mean_location_latitude = sdf3.update(lambda value: print(value)) 
+print(f"mean_location_altitud {mean_location_altitud}")
+print(f"mean_location_longitude {mean_location_longitude}")
+print(f"mean_location_latitude {mean_location_latitude}")
+
+
 #sdf.print()
 sdf.to_topic(output_topic)
 
