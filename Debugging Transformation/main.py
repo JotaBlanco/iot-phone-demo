@@ -26,9 +26,12 @@ sdf1 = sdf[["location-altitude"]]
 sdf1 = (
     sdf1.apply(lambda value: value["location-altitude"])
     .sliding_window(duration_ms=timedelta(seconds=10)).mean().current()
-    .apply(lambda result: result["value"])
+    .apply(lambda result: {"mean_location_altitude": result["value"]})
 )
 sdf1.print()
+
+
+
 # location-longitude
 """
 sdf2 = sdf[["location-longitude"]]
