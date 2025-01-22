@@ -35,20 +35,18 @@ def calculate_hull_points(value:dict, state:State):
         current_points_array = latest_point
     else:
         current_points_array = np.vstack((np.array(current_points_array), latest_point))
-    state.set('position_points', current_points_array.tolist())
-    print(current_points_array)
-    """
+    
     # Calculate Convex Hull
     hull = ConvexHull(current_points_array)
-    hull_vertices = current_points_array[hull.vertices]
+    hull_vertices = current_points_array[hull.vertices]    
 
     # Update state with Hull
-    state.set('position_points', hull_vertices)
+    state.set('position_points', hull_vertices.tolist())
+    print(hull_vertices)
 
     # Create area col
     value["HullArea"] = hull.area
 
-    """
 
 sdf = sdf.update(calculate_hull_points, stateful=True)
 sdf.print()
