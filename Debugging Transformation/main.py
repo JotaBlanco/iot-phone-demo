@@ -19,13 +19,13 @@ sdf = sdf[filter_cols]
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
 sdf1 = sdf[["location-altitude"]]
-sdf1.print(metadata=True)
+#sdf1.print(metadata=True)
 
 sdf2 = sdf[["location-longitude"]]
-sdf2.print(metadata=True)
+#sdf2.print(metadata=True)
 
 sdf3 = sdf[["location-latitude"]]
-sdf3.print(metadata=True)
+#sdf3.print(metadata=True)
 
 
 # WINDOW
@@ -64,7 +64,7 @@ sdf3 = (
 print("sdf3")
 sdf3.print()
 """
-sdf.print()
+#sdf.print()
 sdf.to_topic(output_topic)
 
 if __name__ == "__main__":
