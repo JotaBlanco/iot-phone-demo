@@ -30,7 +30,7 @@ sdf1 = (
     .current()
     .apply(lambda result: result["value"]) # Unwrap the aggregated result to match the expected output format
 )
-mean_location_altitud = sdf1.update(lambda value: value) 
+mean_location_altitud = sdf1.apply(lambda value: value) 
 # location-longitude
 """
 sdf2 = sdf[["location-longitude"]]
