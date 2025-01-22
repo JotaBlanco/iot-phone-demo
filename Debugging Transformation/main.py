@@ -20,13 +20,33 @@ sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 sdf.print(metadata=True)
 
 # WINDOW
-sdf["location-altitude"] = (
+sdf1 = (
     sdf.apply(lambda value: value["location-altitude"])
     .sliding_window(duration_ms=timedelta(seconds=10))
     .mean()
     .current()
     .apply(lambda result: result["value"]) # Unwrap the aggregated result to match the expected output format
 )
+print("sdf1")
+sdf1.print()
+sdf2 = (
+    sdf.apply(lambda value: value["location-longitude"])
+    .sliding_window(duration_ms=timedelta(seconds=10))
+    .mean()
+    .current()
+    .apply(lambda result: result["value"]) # Unwrap the aggregated result to match the expected output format
+)
+print("sdf2")
+sdf2.print()
+sdf3 = (
+    sdf.apply(lambda value: value["location-latitude"])
+    .sliding_window(duration_ms=timedelta(seconds=10))
+    .mean()
+    .current()
+    .apply(lambda result: result["value"]) # Unwrap the aggregated result to match the expected output format
+)
+print("sdf3")
+sdf3.print()
 
 sdf.print()
 sdf.to_topic(output_topic)
