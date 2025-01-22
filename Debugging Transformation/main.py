@@ -21,7 +21,11 @@ sdf1 = sdf[["location-altitude"]]
 sdf2 = sdf[["location-longitude"]]
 sdf3 = sdf[["location-latitude"]]
 sdf.print(metadata=True)
+sdf1.print(metadata=True)
+sdf2.print(metadata=True)
+sdf3.print(metadata=True)
 
+"""
 # WINDOW
 sdf1 = (
     sdf1.apply(lambda value: value["location-altitude"])
@@ -32,6 +36,7 @@ sdf1 = (
 )
 print("sdf1")
 sdf1.print()
+
 sdf2 = (
     sdf2.apply(lambda value: value["location-longitude"])
     .sliding_window(duration_ms=timedelta(seconds=10))
@@ -41,6 +46,7 @@ sdf2 = (
 )
 print("sdf2")
 sdf2.print()
+
 sdf3 = (
     sdf3.apply(lambda value: value["location-latitude"])
     .sliding_window(duration_ms=timedelta(seconds=10))
@@ -50,7 +56,7 @@ sdf3 = (
 )
 print("sdf3")
 sdf3.print()
-
+"""
 sdf.print()
 sdf.to_topic(output_topic)
 
