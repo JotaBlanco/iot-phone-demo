@@ -35,6 +35,7 @@ def calculate_hull_points(value:dict, state:State):
         current_points_array = latest_point
     else:
         current_points_array = np.vstack((current_points_array, latest_point))
+    state.set('position_points', current_points_array)
     print(current_points_array)
     """
     # Calculate Convex Hull
