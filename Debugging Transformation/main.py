@@ -23,8 +23,29 @@ sdf = sdf[filter_cols]
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
 # 
-#def calculate_
+def calculate_hull_points(value):
+    # Get latest point coordinates
+    latest_point = np.array([value["location-longitude"],value["location-latitude"]])
 
+    # Update state
+    current_points_array = state.get("position_points")
+    if current_points_array is None:
+        current_points_array = latest_point
+    else:
+        current_points_array = np.vstack((current_points_array, latest_point))
+    
+    # Calculate Convex Hull
+    hull = ConvexHull(current_points_array)
+    hull_vertices = current_points_array[hull.vertices]
+
+    # Update state with Hull
+    state.set('position_points', hull_vertices)
+
+    # Create area col
+    value["HullArea"] = hull.area
+
+sdf = sdf.update(calculate_hull_points, stateful=True)
+sdf.print()
 
 """
 # WINDOW
