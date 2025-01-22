@@ -42,7 +42,7 @@ sdf1.print()
 sdf["new_col"] = 2
 #sdf["avg_location-altitude"] = 
 sdf1.update(lambda value: print(value))
-sdf["new_col"] = sdf1.update(lambda value: value)
+sdf["new_col2"] = sdf1.update(lambda value: value)
 sdf.print()
 
 
