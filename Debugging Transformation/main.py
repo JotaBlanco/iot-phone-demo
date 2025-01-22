@@ -46,7 +46,7 @@ def calculate_hull_points(value:dict, state:State):
     #print(hull_vertices)
 
     # Create area col
-    value["HullArea"] = hull.area
+    #value["HullArea"] = hull.area
 
 
 sdf = sdf.update(calculate_hull_points, stateful=True)
