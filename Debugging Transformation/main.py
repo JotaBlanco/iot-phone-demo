@@ -2,6 +2,9 @@ import os
 import copy
 from quixstreams import Application
 from datetime import timedelta
+from scipy.spatial import ConvexHull
+import numpy as np
+
 
 # for local dev, load env vars from a .env file
 from dotenv import load_dotenv
@@ -20,7 +23,7 @@ sdf = sdf[filter_cols]
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
 # 
-def calculate_
+#def calculate_
 
 
 """
