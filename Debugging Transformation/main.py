@@ -1,6 +1,6 @@
 import os
 import copy
-from quixstreams import Application
+from quixstreams import Application, State
 from datetime import timedelta
 from scipy.spatial import ConvexHull
 import numpy as np
@@ -23,7 +23,7 @@ sdf = sdf[filter_cols]
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
 # 
-def calculate_hull_points(value):
+def calculate_hull_points(value:dict, state:State):
     # Get latest point coordinates
     latest_point = np.array([value["location-longitude"],value["location-latitude"]])
 
