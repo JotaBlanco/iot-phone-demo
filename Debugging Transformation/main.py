@@ -44,7 +44,7 @@ sdf["new_col"] = 2
 sdf1.update(lambda value: print(value))
 a = sdf1.update(lambda value: print(value))
 print(a)
-# sdf["new_col2"] = sdf1.update(lambda value: value)
+sdf["new_col2"] = a
 sdf.print()
 
 
