@@ -20,7 +20,7 @@ sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 sdf.print(metadata=True)
 
 # WINDOW
-sdf["avg_location-altitude"] = (
+sdf = (
     sdf.apply(lambda value: value["location-altitude"])
     .sliding_window(duration_ms=timedelta(seconds=10))
     .mean()
