@@ -12,13 +12,36 @@ output_topic = app.topic(os.environ["output"])
 
 sdf = app.dataframe(input_topic)
 
-
+# ROBUSTLY select columns
 filter_cols = ((sdf.contains("location-altitude")) & (sdf.contains("location-longitude")) & (sdf.contains("location-latitude")))
 sdf = sdf[filter_cols]
-
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
+sdf.print(metadata=True)
 
+# WINDOW
+sdf = (
+    # Extract "temperature" value from the message
+    sdf.apply(lambda value: value["location-altitude"])
 
+    # Define a hopping window of 1h with 10m step
+    # You can also pass duration_ms and step_ms as integers of milliseconds
+    .hopping_window(duration_ms=timedelta(seconds=10), step_ms=timedelta(minutes=10))
+
+    # Specify the "mean" aggregate function
+    .mean()
+
+    # Emit updates for each incoming message
+    .current()
+
+    # Unwrap the aggregated result to match the expected output format
+    .apply(
+        lambda result: {
+            "avg_temperature": result["value"],
+            "window_start_ms": result["start"],
+            "window_end_ms": result["end"],
+        }
+    )
+)
 sdf.print(metadata=True)
 sdf.to_topic(output_topic)
 
