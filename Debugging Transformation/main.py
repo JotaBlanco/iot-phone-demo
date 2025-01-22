@@ -17,11 +17,14 @@ sdf = app.dataframe(input_topic)
 filter_cols = ((sdf.contains("location-altitude")) & (sdf.contains("location-longitude")) & (sdf.contains("location-latitude")))
 sdf = sdf[filter_cols]
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
+sdf1 = sdf[["location-altitude"]]
+sdf2 = sdf[["location-longitude"]]
+sdf3 = sdf[["location-latitude"]]
 sdf.print(metadata=True)
 
 # WINDOW
 sdf1 = (
-    sdf.apply(lambda value: value["location-altitude"])
+    sdf1.apply(lambda value: value["location-altitude"])
     .sliding_window(duration_ms=timedelta(seconds=10))
     .mean()
     .current()
@@ -30,7 +33,7 @@ sdf1 = (
 print("sdf1")
 sdf1.print()
 sdf2 = (
-    sdf.apply(lambda value: value["location-longitude"])
+    sdf2.apply(lambda value: value["location-longitude"])
     .sliding_window(duration_ms=timedelta(seconds=10))
     .mean()
     .current()
@@ -39,7 +42,7 @@ sdf2 = (
 print("sdf2")
 sdf2.print()
 sdf3 = (
-    sdf.apply(lambda value: value["location-latitude"])
+    sdf3.apply(lambda value: value["location-latitude"])
     .sliding_window(duration_ms=timedelta(seconds=10))
     .mean()
     .current()
