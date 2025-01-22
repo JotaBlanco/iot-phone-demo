@@ -1,4 +1,5 @@
 import os
+import copy
 from quixstreams import Application
 from datetime import timedelta
 
@@ -39,12 +40,12 @@ sdf1 = (
 print("sdf1")
 sdf1.print()
 
-sdf["new_col"] = 2
-#sdf["avg_location-altitude"] = 
-sdf1.update(lambda value: print(value))
-a = sdf1.update(lambda value: print(value))
+sdf["new_col"] = 2 # assigning a value to a new column: it works
+sdf1.update(lambda value: print(value)) # accessing the result of sdf1: it works
+a = sdf1.update(lambda value: print(value)) # assigning the result of sdf1 to a variable: it works
 print(a)
-sdf["new_col2"] = a
+b = copy.deepcopy(a)
+sdf["new_col2"] = b # assigning the result of sdf1 to a new columns of sdf: it doesn't
 sdf.print()
 
 
