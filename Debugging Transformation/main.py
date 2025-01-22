@@ -50,7 +50,8 @@ sdf3 = (
     .current()
     .apply(lambda result: result["value"]) # Unwrap the aggregated result to match the expected output format
 )
-mean_location_latitude = sdf3.update(lambda value: print(value)) 
+mean_location_latitude = sdf3.update(lambda value: print(value))
+
 print(f"mean_location_altitud {mean_location_altitud}")
 print(f"mean_location_longitude {mean_location_longitude}")
 print(f"mean_location_latitude {mean_location_latitude}")
