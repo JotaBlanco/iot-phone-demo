@@ -25,9 +25,9 @@ sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 # 
 def calculate_hull_points(value:dict, state:State):
     # Get latest point coordinates
-    latest_point = np.array([value["location-longitude"],value["location-latitude"]])
+    latest_point = np.array([value["location-longitude"], value["location-latitude"]])
     print(latest_point)
-    """
+    
 
     # Update state
     current_points_array = state.get("position_points")
@@ -35,7 +35,8 @@ def calculate_hull_points(value:dict, state:State):
         current_points_array = latest_point
     else:
         current_points_array = np.vstack((current_points_array, latest_point))
-    
+    print(current_points_array)
+    """
     # Calculate Convex Hull
     hull = ConvexHull(current_points_array)
     hull_vertices = current_points_array[hull.vertices]
