@@ -25,12 +25,10 @@ sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 sdf1 = sdf[["location-altitude"]]
 sdf1 = (
     sdf1.apply(lambda value: value["location-altitude"])
-    .sliding_window(duration_ms=timedelta(seconds=10))
-    .mean()
-    .current()
-    .apply(lambda result: result["value"]) # Unwrap the aggregated result to match the expected output format
+    .sliding_window(duration_ms=timedelta(seconds=10)).mean().current()
+    .apply(lambda result: result["value"])
 )
-mean_location_altitud = sdf1.apply(lambda value: value) 
+sdf1.print()
 # location-longitude
 """
 sdf2 = sdf[["location-longitude"]]
@@ -53,9 +51,7 @@ sdf3 = (
 )
 mean_location_latitude = sdf3.update(lambda value: print(value))
 """
-print(f"mean_location_altitud {mean_location_altitud}")
-#print(f"mean_location_longitude {mean_location_longitude}")
-#print(f"mean_location_latitude {mean_location_latitude}")
+
 
 
 #sdf.print()
