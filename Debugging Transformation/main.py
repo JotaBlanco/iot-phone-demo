@@ -29,6 +29,7 @@ sdf1 = (
     .apply(lambda result: {"mean_location_altitude": result["value"]})
 )
 sdf1.print()
+print(sdf1.apply(lambda value: value["mean_location_altitude"]))
 
 
 
