@@ -34,6 +34,7 @@ sdf = (
     # Emit updates for each incoming message
     .current()
 )
+
 sdf.print()
 sdf.to_topic(output_topic)
 
