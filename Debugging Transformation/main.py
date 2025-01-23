@@ -23,8 +23,9 @@ sdf = sdf[filter_cols]
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
 
-def aggregate_window(window: dict):
-
+# Smooth coordinates
+def coordinates_smoother(window: dict):
+    print(window)
     values = window["value"]
     new_row = values[-1]
 
@@ -33,7 +34,7 @@ def aggregate_window(window: dict):
 
     return new_row
 
-sdf = sdf.hopping_window(5000, 250).collect().final().apply(aggregate_window)
+sdf = sdf.sliding_window(3600*10**3).collect().current().apply(coordinates_smoother)
 
 
 # Calculate hull points
