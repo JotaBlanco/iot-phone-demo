@@ -22,6 +22,7 @@ filter_cols = ((sdf.contains("location-altitude")) & (sdf.contains("location-lon
 sdf = sdf[filter_cols]
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
+
 # Calculate hull points
 def calculate_hull_points(value:dict, state:State):
     # Get latest point coordinates
@@ -43,7 +44,7 @@ def calculate_hull_points(value:dict, state:State):
 
     # Update state with Hull
     state.set('position_points', new_points.tolist())
-    print(new_points)
+
 
 sdf = sdf.update(calculate_hull_points, stateful=True)
 sdf.print()
