@@ -62,7 +62,7 @@ def calculate_hull_points(value:dict, state:State):
 #sdf = sdf.update(calculate_hull_points, stateful=True)
 sdf.print()
 
-sdf.to_topic(output_topic)
+#sdf.to_topic(output_topic)
 
 if __name__ == "__main__":
     app.run()
