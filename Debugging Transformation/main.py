@@ -35,7 +35,7 @@ def coordinates_smoother(window: dict):
 # Calculate hull points
 def calculate_hull_points(value:dict, state:State):
     # Get latest point coordinates
-    latest_point = np.array([value["location-longitude"], value["location-latitude"]])  
+    latest_point = np.array([value["avg-location-longitude"], value["avg-location-latitude"]])  
 
     # Update state
     current_points = state.get("position_points")
