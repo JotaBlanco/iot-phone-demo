@@ -28,19 +28,19 @@ def coordinates_smoother(window: dict):
     values = window["value"]
     new_row = values[-1]
     #print(map(lambda row: row["location-longitude"], values))
-    new_row["median-location-longitude"] = np.median(map(lambda row: row["location-longitude"], values))
-    new_row["median-location-latitude"] = np.median(map(lambda row: row["location-latitude"], values))
-
+    #new_row["median-location-longitude"] = np.median(map(lambda row: row["location-longitude"], values))
+    #new_row["median-location-latitude"] = np.median(map(lambda row: row["location-latitude"], values))
     #new_row["median-location-longitude"] = sum(map(lambda row: row["location-longitude"], values)) / len(values)
     #new_row["median-location-latitude"] = sum(map(lambda row: row["location-latitude"], values)) / len(values)
-
+    new_row["mean-location-longitude"] = sum(map(lambda row: row["location-longitude"], values)) / len(values)
+    new_row["mean-location-latitude"] = sum(map(lambda row: row["location-latitude"], values)) / len(values)
     return new_row
 
 
 # Calculate hull points
 def calculate_hull_points(value:dict, state:State):
     # Get latest point coordinates
-    latest_point = np.array([value["median-location-longitude"], value["median-location-latitude"]])  
+    latest_point = np.array([value["mean-location-longitude"], value["mean-location-latitude"]])  
 
     # Update state
     current_points = state.get("position_points")
