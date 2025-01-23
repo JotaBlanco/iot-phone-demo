@@ -23,6 +23,16 @@ sdf = sdf[filter_cols]
 sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
 
+def aggregate_window(window: dict):
+
+    values = window["value"]
+    new_row = values[-1]
+
+    new_row["average_longitude"] = sum(map(lambda row: row["location-longitude"], values)) / len(values)
+    new_row["average_latitude"] = sum(map(lambda row: row["location-latitude"], values)) / len(values)
+
+    return new_row
+
 # Calculate hull points
 def calculate_hull_points(value:dict, state:State):
     # Get latest point coordinates
