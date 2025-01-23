@@ -37,7 +37,7 @@ def calculate_hull_points(value:dict, state:State):
             hull = ConvexHull(new_points)
             new_points = new_points[hull.vertices]
             value["HullArea"] = hull.area  # Create area col
-            value["HullPoints"] = new_points
+            value["HullPoints"] = new_points.tolist()
         except:
             print("Hasn't worked")
 
