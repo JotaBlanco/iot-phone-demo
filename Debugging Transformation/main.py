@@ -34,7 +34,7 @@ def coordinates_smoother(window: dict):
 
     return new_row
 
-sdf = sdf.sliding_window(3600*10**3).collect().current().apply(coordinates_smoother)
+sdf = sdf.sliding_window(3600*10**3).collect().final().apply(coordinates_smoother)
 
 
 # Calculate hull points
