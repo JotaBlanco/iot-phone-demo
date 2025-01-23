@@ -33,6 +33,9 @@ def aggregate_window(window: dict):
 
     return new_row
 
+sdf = sdf.hopping_window(5000, 250).collect().final().apply(aggregate_window)
+
+
 # Calculate hull points
 def calculate_hull_points(value:dict, state:State):
     # Get latest point coordinates
@@ -56,7 +59,7 @@ def calculate_hull_points(value:dict, state:State):
     state.set('position_points', new_points.tolist())
 
 
-sdf = sdf.update(calculate_hull_points, stateful=True)
+#sdf = sdf.update(calculate_hull_points, stateful=True)
 sdf.print()
 
 sdf.to_topic(output_topic)
