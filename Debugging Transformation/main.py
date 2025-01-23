@@ -27,9 +27,13 @@ sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 def coordinates_smoother(window: dict):
     values = window["value"]
     new_row = values[-1]
-    print(map(lambda row: row["location-longitude"], values))
+    #print(map(lambda row: row["location-longitude"], values))
     #new_row["median-location-longitude"] = np.median(map(lambda row: row["location-longitude"], values))
     #new_row["median-location-latitude"] = np.median(map(lambda row: row["location-latitude"], values))
+
+    new_row["median-location-longitude"] = sum(map(lambda row: row["location-longitude"], values)) / len(values)
+    new_row["median-location-latitude"] = sum(map(lambda row: row["location-latitude"], values)) / len(values)
+
     return new_row
 
 
