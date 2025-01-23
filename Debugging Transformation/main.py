@@ -25,13 +25,10 @@ sdf = sdf[["location-altitude", "location-longitude", "location-latitude"]]
 
 # Smooth coordinates
 def coordinates_smoother(window: dict):
-    print(window)
     values = window["value"]
     new_row = values[-1]
-
-    new_row["average(location-longitude)"] = sum(map(lambda row: row["location-longitude"], values)) / len(values)
-    new_row["average(location-latitude)"] = sum(map(lambda row: row["location-latitude"], values)) / len(values)
-
+    new_row["avg-location-longitude"] = sum(map(lambda row: row["location-longitude"], values)) / len(values)
+    new_row["avg-location-latitude"] = sum(map(lambda row: row["location-latitude"], values)) / len(values)
     return new_row
 
 sdf = sdf.sliding_window(3600*10**3).collect().final().apply(coordinates_smoother)
