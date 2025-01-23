@@ -31,8 +31,6 @@ def coordinates_smoother(window: dict):
     new_row["avg-location-latitude"] = sum(map(lambda row: row["location-latitude"], values)) / len(values)
     return new_row
 
-sdf = sdf.sliding_window(3600*10**3).collect().final().apply(coordinates_smoother)
-
 
 # Calculate hull points
 def calculate_hull_points(value:dict, state:State):
@@ -57,7 +55,9 @@ def calculate_hull_points(value:dict, state:State):
     state.set('position_points', new_points.tolist())
 
 
-#sdf = sdf.update(calculate_hull_points, stateful=True)
+
+sdf = sdf.sliding_window(3600*10**3).collect().final().apply(coordinates_smoother)
+sdf = sdf.update(calculate_hull_points, stateful=True)
 sdf.print()
 
 #sdf.to_topic(output_topic)
