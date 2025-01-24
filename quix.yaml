@@ -150,6 +150,11 @@ deployments:
         description: Output topic
         required: true
         value: events
+      - name: hull_topic
+        inputType: InputTopic
+        description: ''
+        required: false
+        value: transform
   - name: InfluxDb
     application: influxDb
     version: latest
