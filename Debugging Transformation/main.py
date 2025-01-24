@@ -62,7 +62,7 @@ def calculate_hull_points(value:dict, state:State):
 
 
 
-sdf = sdf.sliding_window(3600*10**3).collect().final().apply(coordinates_smoother)
+sdf = sdf.sliding_window(10*10**3).collect().final().apply(coordinates_smoother)
 sdf = sdf.update(calculate_hull_points, stateful=True)
 sdf.print()
 sdf.to_topic(output_topic)
