@@ -11,5 +11,10 @@ variables:
     description: The topic to read events from
     defaultValue: events
     required: true
+  - name: hull_topic
+    inputType: InputTopic
+    description: ''
+    defaultValue: transform
+    required: false
 dockerfile: src/build/dockerfile
 defaultFile: src/app/services/environment-variables.service.ts
