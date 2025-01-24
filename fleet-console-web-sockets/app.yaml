@@ -11,6 +11,11 @@ variables:
     description: Output topic
     defaultValue: events
     required: true
+  - name: hull_topic
+    inputType: InputTopic
+    description: ''
+    defaultValue: transform
+    required: false
 dockerfile: dockerfile
 runEntryPoint: main.py
 defaultFile: main.py
