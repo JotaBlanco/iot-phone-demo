@@ -13,9 +13,10 @@ class webSocketSource:
         app = Application(consumer_group="heatmap-web-sockets-v3", auto_offset_reset="latest")
         self._topic = app.topic(name=os.environ["input"])
         self._events_topic = app.topic(name=os.environ["events_topic"])
+        self._hull_topic = app.topic(name=os.environ["hull_topic"])
         
         self._consumer = app.get_consumer()
-        self._consumer.subscribe([self._topic.name, self._events_topic.name])
+        self._consumer.subscribe([self._topic.name, self._events_topic.name, self._hull_topic.name])
         
         # Holds all client connections partitioned by page.
         self.websocket_connections = {}
