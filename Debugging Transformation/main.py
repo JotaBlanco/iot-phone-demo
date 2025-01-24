@@ -30,8 +30,8 @@ def coordinates_smoother(window: dict):
     #print(map(lambda row: row["location-longitude"], values))
     #new_row["median-location-longitude"] = np.median(map(lambda row: row["location-longitude"], values))
     #new_row["median-location-latitude"] = np.median(map(lambda row: row["location-latitude"], values))
-    new_row["median-location-longitude"] = np.median(list(map(lambda row: row["location-longitude"], values)))
-    new_row["median-location-latitude"] = np.median(list(map(lambda row: row["location-latitude"], values)))
+    new_row["median-location-longitude"] = float(np.median(list(map(lambda row: row["location-longitude"], values))))
+    new_row["median-location-latitude"] = float(np.median(list(map(lambda row: row["location-latitude"], values))))
     #new_row["mean-location-longitude"] = sum(map(lambda row: row["location-longitude"], values)) / len(values)
     #new_row["mean-location-latitude"] = sum(map(lambda row: row["location-latitude"], values)) / len(values)
     return new_row
